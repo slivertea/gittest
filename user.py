@@ -1,5 +1,5 @@
 #!/usr/bin/python3.6
-correctinput = "Vigus"
+correctinput = "Zaphod"
 name = input("Hey person, what is your name? ")
 valid = 0
 while valid != 1:
