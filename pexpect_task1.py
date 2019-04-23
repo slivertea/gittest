@@ -21,13 +21,15 @@ connection.expect('ignw-csr#')
 command = "show run | in hostname"
 connection.sendline(command)
 connection.expect('ignw-csr#')
-hostname = connection.before
+hostname = re.sub(".*hostname\s", "", str(connection.before))
+hostname = hostname[:2]
+print("printing by config parse:")
 print(hostname)
 # the REM'd block blow sets hostname based on the prompt
-# connection.sendline(command)
-#connection.sendline("\n")
-#hostname = connection.after[:1]
-#print(hostname)
+connection.sendline(command)
+connection.sendline("\n")
+hostname = connection.after[:1]
+print(hostname)
 #
 command = "show run int g1"
 connection.sendline(command)

@@ -12,11 +12,13 @@ connection = ConnectHandler(**cisco_cloud_router)
 
 hostname = connection.find_prompt()
 #print(hostname[:-1])
-ifip = connection.send_command('show run int g2 | i address')
+ifip = connection.send_command('show run int g1 | i address')
 if re.search(r'((\d{1,3}\.){3}(\d{1,3}))', ifip):
     #print(ifip)
     ipaddr = re.search(r'((\d{1,3}\.){3}(\d{1,3}))',ifip)
+    ipmask = re.sub(".*((\d{1,3}\.){3}(\d{1,3}))\s", "",ifip)
     print(ipaddr.group())
+    print(ipmask)
 else:
     print("No IP Found")
 
